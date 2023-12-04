@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="INFO_PRODUCTOSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_PRODUCTOS">
+          <Key>
+            <PropertyRef Name="ID_PRODUCTO" />
+          </Key>
+          <Property Name="ID_PRODUCTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESC_PRODUCTO" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="AÑO_FABRICACION" Type="int" Nullable="false" />
+          <Property Name="CASA_FABRICACION" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ESTADO_PRODUCTO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AREA_TRATAMIENTO" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="INFO_PRODUCTOSModelStoreContainer">
+          <EntitySet Name="T_PRODUCTOS" EntityType="Self.T_PRODUCTOS" Schema="SCH_INFO" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="INFO_PRODUCTOSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="INFO_PRODUCTOSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_PRODUCTOS" EntityType="INFO_PRODUCTOSModel.T_PRODUCTOS" />
+        </EntityContainer>
+        <EntityType Name="T_PRODUCTOS">
+          <Key>
+            <PropertyRef Name="ID_PRODUCTO" />
+          </Key>
+          <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESC_PRODUCTO" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AÑO_FABRICACION" Type="Int32" Nullable="false" />
+          <Property Name="CASA_FABRICACION" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_PRODUCTO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AREA_TRATAMIENTO" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="INFO_PRODUCTOSModelStoreContainer" CdmEntityContainer="INFO_PRODUCTOSEntities">
+          <EntitySetMapping Name="T_PRODUCTOS">
+            <EntityTypeMapping TypeName="INFO_PRODUCTOSModel.T_PRODUCTOS">
+              <MappingFragment StoreEntitySet="T_PRODUCTOS">
+                <ScalarProperty Name="AREA_TRATAMIENTO" ColumnName="AREA_TRATAMIENTO" />
+                <ScalarProperty Name="ESTADO_PRODUCTO" ColumnName="ESTADO_PRODUCTO" />
+                <ScalarProperty Name="CASA_FABRICACION" ColumnName="CASA_FABRICACION" />
+                <ScalarProperty Name="AÑO_FABRICACION" ColumnName="AÑO_FABRICACION" />
+                <ScalarProperty Name="DESC_PRODUCTO" ColumnName="DESC_PRODUCTO" />
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
