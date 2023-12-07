@@ -17,10 +17,19 @@ namespace Examen.Controllers
 
         //}
 
-        //[HttpGet]
-        //public ActionResult agregarProducto()
-        //{
+        [HttpGet]
+        public ActionResult AgregarProducto()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult NuevoProducto(CProducto cProducto)
+        {
+            return View();
+        }
+        
+   
 
         //}
 

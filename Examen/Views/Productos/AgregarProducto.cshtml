@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "AgregarProducto";
+}
+
+
+<div class="row">
+    <h2>Agregar Producto</h2>
+    <br />
+    <div class="col">
+        <form action="NuevoProducto" method="post">
+            <div class="form-group">
+                <label for="inputDescription" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="inputDescription" name="DescripcionProducto" required>
+            </div>
+            <div class="form-group">
+                <label for="inputProduction" class="form-label">Año de Fabricación</label>
+                <input type="number" value="2023" class="form-control" id="inputProduction" name="AnooFabricacion" required>
+            </div>
+            <div class="form-group">
+                <label for="inputHouse" class="form-label">Casa Fabricante</label>
+                <select class="form-control" id="inputHouse" name="CasaFabricacion">
+                    <option value="1">Médicos en Casa</option>
+                    <option value="2">Medicina a tu Alcance</option>
+                    <option value="3">Médico Feliz</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputState" class="form-label">Estado Producto</label>
+                <select class="form-control" id="inputState" name="EstadoProducto">
+                    <option value="1">Activo</option>
+                    <option value="2">Inactivo</option>
+                    <option value="3">Descontinuado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputTreatment" class="form-label">Área Tratamiento</label>
+                <select class="form-control" id="inputTreatment" name="AreaTratamiento">
+                    <option value="1">Salud General</option>
+                    <option value="2">Salud Mental</option>
+                    <option value="3">Estética</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+    </div>
+</div>
+
