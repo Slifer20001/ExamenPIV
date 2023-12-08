@@ -84,10 +84,11 @@ namespace Examen.Controllers
 
                 }
             }
-            catch
+            catch (Exception e)
             {
-
-
+                ViewBag.ValorMensaje = 1;
+                ViewBag.MensajeProducto = "Fallo la actualizacion" + e ;
+                return View(produc);
             }
 
         }
