@@ -84,10 +84,12 @@ namespace Examen.Controllers
 
                 per.IdProducto = pers.ID_PRODUCTO;
                 per.DescripcionProducto = pers.DESC_PRODUCTO;
+
                 BotonActualizar = "Actualizar", 
                 BotonBorrar = "Borrar" 
                      }).ToList();
         }
+
             return View(per);
 
         }
