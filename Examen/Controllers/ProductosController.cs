@@ -74,6 +74,25 @@ namespace Examen.Controllers
         }
 
         [HttpGet]
+        public ActionResult ConsultaProducto()
+        {
+
+            CProducto per = new CProducto();
+            using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
+            {
+                var pers = db.T_PRODUCTOS.Find();
+
+                per.IdProducto = pers.ID_PRODUCTO;
+                per.DescripcionProducto = pers.DESC_PRODUCTO;
+                BotonActualizar = "Actualizar", 
+                BotonBorrar = "Borrar" 
+                     }).ToList();
+        }
+            return View(per);
+
+        }
+
+        [HttpGet]
         public ActionResult eliminarProducto(int id)
         {
 
