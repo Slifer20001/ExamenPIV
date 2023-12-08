@@ -28,36 +28,75 @@ namespace Examen.Controllers
         {
             return View();
         }
-        
-   
+
+
 
         //}
 
         //[HttpPost]
         //public ActionResult agregarProductos()
         //{
-
-
         //}
-        //[HttpGet]
-        //public ActionResult ActualizarProducto(int id)
-        //{
+        [HttpGet]
+        public ActionResult ActualizarProducto(int id)
+        {
+            CActualizarProducto producto = new CActualizarProducto();
+            using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
+            {
+                var produc = db.T_PRODUCTOS.Find(id);
+
+                produc.IdProducto = produc.ID_PRODUCTO;
+                produc.DescripcionProducto = produc.DESC_PRODUCTO;
+                produc.AnooFabricacion = produc.AÑO_FABRICACION;
+                produc.CasaFabricacion = produc.CASA_FABRICACION;
+                produc.EstadoProducto = produc.ESTADO_PRODUCTO;
+                produc.AreaTratamiento = produc.AREA_TRATAMIENTO;
+            }
+            return View(producto);
+
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarProducto(CActualizarProducto produc)
+        {
+            try
+            {
+                if (!ModelSatate.IsValid)
+                {
+                    return View(produc);
+                }
+
+                using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
+                {
+                    var producto = db.T_PRODUCTOS.
+                    produc.IdProducto = produc.ID_PRODUCTO;
+                    produc.DescripcionProducto = produc.DESC_PRODUCTO;
+                    produc.AnooFabricacion = produc.AÑO_FABRICACION;
+                    produc.CasaFabricacion = produc.CASA_FABRICACION;
+                    produc.EstadoProducto = produc.ESTADO_PRODUCTO;
+                    produc.AreaTratamiento = produc.AREA_TRATAMIENTO;
+
+                    db.Entry(producto).State = System.Data.EntityState.Modified;
+                    db.SaveChanges;
+
+                    ViewBag.ValorMensaje = 1;
+                    ViewBag.MensajeProducto = "Producto exitosamente actuañlizado";
+
+                }
+            }
+            catch
+            {
 
 
-        //}
+            }
 
-        //[HttpPost]
-        //public ActionResult ActualizarProducto()
-        //{
-
-
-        //}
+        }
 
         [HttpGet]
         public ActionResult ConsultarProducto(int id)
         {
 
-             CProducto per = new CProducto();
+            CProducto per = new CProducto();
             using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
             {
                 var pers = db.T_PRODUCTOS.Find(id);
@@ -85,10 +124,10 @@ namespace Examen.Controllers
                 per.IdProducto = pers.ID_PRODUCTO;
                 per.DescripcionProducto = pers.DESC_PRODUCTO;
 
-                BotonActualizar = "Actualizar", 
-                BotonBorrar = "Borrar" 
-                     }).ToList();
-        }
+                (BotonActualizar = "Actualizar",
+                 BotonBorrar = "Borrar").ToList();
+            }
+       
 
             return View(per);
 
