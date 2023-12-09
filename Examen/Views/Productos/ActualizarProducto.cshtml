@@ -1,0 +1,130 @@
+﻿@model Examen.Models.viewModels.CActualizarProducto
+@{
+    ViewBag.Title = "ActualizarProducto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h2>Actualizar Producto</h2>
+    <br />
+    <br />
+    <br />
+
+    @if (ViewBag.ValorMesaje == 1)
+    {
+        <div class="productos" id="prod">
+            <div class="vista">
+                <label for="Descripcion" class="descripcion">Descripcion</label>
+                <br />
+                <br />
+                <input type="text" id="Descripcion">
+                <br />
+                <br />
+            </div>
+            <div class="vista">
+                <label for="Anno" class="annodesc">Año de fabricacion</label>
+                <br />
+                <br />
+                <input type="number" id="Anno">
+                <br />
+                <br />
+            </div>
+            <div class="vista">
+                <label for="Fabricante" class="fabri">Casa de fabricante</label>
+                <select id="Fabricante" name="Casa" class="fabri">
+                    <option value="1">Medicos en casa</option>
+                    <option value="2">Medicina a tu alcance</option>
+                    <option value="3">Medico feliz</option>
+                </select>
+            </div>
+            <div class="vista">
+                <label for="Estado" class="estado">Estado del producto</label>
+                <select id="Estado" name="estado" class="estadopro">
+                    <option value="1">Activo</option>
+                    <option value="2">Inactivo</option>
+                    <option value="3">Descontinuado</option>
+                </select>
+            </div>
+            <div class="vista">
+                <label for="Tratamiento" class="tratamiento">Area de tratamiento</label>
+                <select id="Tratamiento" name="area" class="areatra">
+                    <option value="1">Salud Mental</option>
+                    <option value="2">Salud general</option>
+                    <option value="3">Estetica</option>
+                </select>
+            </div>
+            <div class="vista">
+                <div class="mensaje">@ViewBag.MensajeProceso</div>
+            </div>
+            <div class="vista">
+                <button type="button" class="botonactualizar">Actualizar</button>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        if (ViewBag.ValorMesaje == 0)
+        {
+            <div class="productos" id="prod">
+                <div class="vista">
+                    <label for="Descripcion" class="descripcion">Descripcion</label>
+                    <br />
+                    <br />
+                    <input type="text" id="Descripcion">
+                    <br />
+                    <br />
+                </div>
+                <div class="vista">
+                    <label for="Anno" class="annodesc">Año de fabricacion</label>
+                    <br />
+                    <br />
+                    <input type="number" id="Anno">
+                    <br />
+                    <br />
+                </div>
+                <div class="vista">
+                    <label for="Fabricante" class="fabri">Casa de fabricante</label>
+                    <select id="Fabricante" name="Casa" class="fabri">
+                        <option value="1">Medicos en casa</option>
+                        <option value="2">Medicina a tu alcance</option>
+                        <option value="3">Medico feliz</option>
+                    </select>
+                </div>
+                <div class="vista">
+                    <label for="Estado" class="estado">Estado del producto</label>
+                    <select id="Estado" name="estado" class="estadopro">
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
+                        <option value="3">Descontinuado</option>
+                    </select>
+                </div>
+                <div class="vista">
+                    <label for="Tratamiento" class="tratamiento">Area de tratamiento</label>
+                    <select id="Tratamiento" name="area" class="areatra">
+                        <option value="1">Salud Mental</option>
+                        <option value="2">Salud general</option>
+                        <option value="3">Estetica</option>
+                    </select>
+                </div>
+                <div class="vista">
+                    <div class="mensaje">@ViewBag.MensajeProceso</div>
+                </div>
+                <div class="vista">
+                    <button type="button" class="botonactualizar">Actualizar</button>
+                </div>
+            </div>
+
+        }
+
+    }
+
+</body>
+</html>

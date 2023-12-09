@@ -45,12 +45,12 @@ namespace Examen.Controllers
             {
                 var produc = db.T_PRODUCTOS.Find(id);
 
-                produc.IdProducto = produc.ID_PRODUCTO;
-                produc.DescripcionProducto = produc.DESC_PRODUCTO;
-                produc.AnooFabricacion = produc.AÑO_FABRICACION;
-                produc.CasaFabricacion = produc.CASA_FABRICACION;
-                produc.EstadoProducto = produc.ESTADO_PRODUCTO;
-                produc.AreaTratamiento = produc.AREA_TRATAMIENTO;
+                producto.IdProducto = produc.ID_PRODUCTO;
+                producto.DescripcionProducto = produc.DESC_PRODUCTO;
+                producto.AnooFabricacion = produc.AÑO_FABRICACION;
+                producto.CasaFabricacion = produc.CASA_FABRICACION;
+                producto.EstadoProducto = produc.ESTADO_PRODUCTO;
+                producto.AreaTratamiento = produc.AREA_TRATAMIENTO;
             }
             return View(producto);
 
@@ -69,12 +69,12 @@ namespace Examen.Controllers
                 using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
                 {
                     var producto = db.T_PRODUCTOS.
-                    produc.IdProducto = produc.ID_PRODUCTO;
-                    produc.DescripcionProducto = produc.DESC_PRODUCTO;
-                    produc.AnooFabricacion = produc.AÑO_FABRICACION;
-                    produc.CasaFabricacion = produc.CASA_FABRICACION;
-                    produc.EstadoProducto = produc.ESTADO_PRODUCTO;
-                    produc.AreaTratamiento = produc.AREA_TRATAMIENTO;
+                    
+                    producto.DescripcionProducto = produc.DESC_PRODUCTO;
+                    producto.AnooFabricacion = produc.AÑO_FABRICACION;
+                    producto.CasaFabricacion = produc.CASA_FABRICACION;
+                    producto.EstadoProducto = produc.ESTADO_PRODUCTO;
+                    producto.AreaTratamiento = produc.AREA_TRATAMIENTO;
 
                     db.Entry(producto).State = System.Data.EntityState.Modified;
                     db.SaveChanges;
@@ -84,10 +84,11 @@ namespace Examen.Controllers
 
                 }
             }
-            catch
+            catch (Exception e)
             {
-
-
+                ViewBag.ValorMensaje = 1;
+                ViewBag.MensajeProducto = "Fallo la actualizacion" + e ;
+                return View(produc);
             }
 
         }
