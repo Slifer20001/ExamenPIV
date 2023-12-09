@@ -37,6 +37,7 @@ namespace Examen.Controllers
         //public ActionResult agregarProductos()
         //{
         //}
+
         [HttpGet]
         public ActionResult ActualizarProducto(int id)
         {
@@ -69,7 +70,7 @@ namespace Examen.Controllers
 
                 using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
                 {
-                    var producto = db.T_PRODUCTOS.
+                    var producto = db.T_PRODUCTOS.Find(produc.IdProducto);
                     
                     producto.DescripcionProducto = produc.DESC_PRODUCTO;
                     producto.AnooFabricacion = produc.AÑO_FABRICACION;
@@ -81,14 +82,14 @@ namespace Examen.Controllers
                     db.SaveChanges;
 
                     ViewBag.ValorMensaje = 1;
-                    ViewBag.MensajeProducto = "Producto exitosamente actuañlizado";
+                    ViewBag.MensajeProducto = "Producto exitosamente actualizado";
 
                 }
                 return View(produc);
             }
             catch (Exception e)
             {
-                ViewBag.ValorMensaje = 1;
+                ViewBag.ValorMensaje = 0;
                 ViewBag.MensajeProducto = "Fallo la actualizacion" + e ;
                 return View(produc);
             }
