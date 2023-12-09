@@ -1,8 +1,40 @@
 ﻿
+@model Examen.Models.viewModels.CProducto
 @{
     ViewBag.Title = "ConsultaProducto";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ConsultaProducto</h2>
+
+
+<h2>Mantenimiento de Personas</h2>
+<br />
+<br />
+
+
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id_Producto</th>
+                    <th>Desc_Producto</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var fila in Model)
+                {
+                    <tr>
+                        <td>@fila.Id_Producto</td>
+                        <td>@fila.Desc_Producto</td>
+                        <td><input type="button" value="Editar" class="btn btn-primary" onclick="document.location.href = '@Url.Content("~/Productos/ActualizaProducto/" + fila.Id_Producto)'" /></td>
+                        <td><input type="button" value="Eliminar" class="btn btn-danger" onclick="document.location.href = '@Url.Content("~/ConsultaProducto/" + fila.Id_Producto)'" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
