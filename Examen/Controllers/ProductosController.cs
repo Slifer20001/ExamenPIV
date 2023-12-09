@@ -149,19 +149,25 @@ namespace Examen.Controllers
         [HttpGet]
         public ActionResult ConsultaProducto()
         {
+            List<CListaProductos> listPro = null;
 
-            CProducto per = new CProducto();
-            using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
+            using (Models.INFO_PRODUCTOSEntities db = new Models.INFO_PRODUCTOSEntities())
             {
-                var pers = db.T_PRODUCTOS.Find();
-
-                per.IdProducto = pers.ID_PRODUCTO;
-                per.DescripcionProducto = pers.DESC_PRODUCTO;
-
+                listPro = (from pro in db.T_PRODUCTOS
+                           select new CListaProductos
+                           {
+                               IdProducto = pro.ID_PRODUCTO,
+                               DescripcionProducto = pro.DESC_PRODUCTO,
+                               AnooFabricacion = pro.AÑO_FABRICACION,
+                               CasaFabricacion = pro.CASA_FABRICACION,
+                               EstadoProducto = pro.ESTADO_PRODUCTO,
+                               AreaTratamiento = pro.AREA_TRATAMIENTO
+                           }).ToList();
             }
-       
 
-            return View(per);
+            return View(listPro);
+
+
 
         }
 
