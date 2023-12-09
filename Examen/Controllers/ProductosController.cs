@@ -61,7 +61,8 @@ namespace Examen.Controllers
         {
             try
             {
-                if (!ModelSatate.IsValid)
+
+                if (!ModelState.IsValid)
                 {
                     return View(produc);
                 }
@@ -83,6 +84,7 @@ namespace Examen.Controllers
                     ViewBag.MensajeProducto = "Producto exitosamente actuañlizado";
 
                 }
+                return View(produc);
             }
             catch (Exception e)
             {
@@ -125,8 +127,6 @@ namespace Examen.Controllers
                 per.IdProducto = pers.ID_PRODUCTO;
                 per.DescripcionProducto = pers.DESC_PRODUCTO;
 
-                (BotonActualizar = "Actualizar",
-                 BotonBorrar = "Borrar").ToList();
             }
        
 
