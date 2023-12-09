@@ -214,6 +214,7 @@
     <Content Include="Views\Productos\ConsultarProducto.cshtml" />
     <Content Include="Views\Productos\AgregarProducto.cshtml" />
     <Content Include="Views\Productos\ConsultaProducto.cshtml" />
+    <Content Include="Views\Productos\ActualizarProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
