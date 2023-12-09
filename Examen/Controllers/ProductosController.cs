@@ -37,7 +37,6 @@ namespace Examen.Controllers
         //public ActionResult agregarProductos()
         //{
         //}
-
         [HttpGet]
         public ActionResult ActualizarProducto(int id)
         {
@@ -46,58 +45,52 @@ namespace Examen.Controllers
             {
                 var produc = db.T_PRODUCTOS.Find(id);
 
-                producto.IdProducto = produc.ID_PRODUCTO;
-                producto.DescripcionProducto = produc.DESC_PRODUCTO;
-                producto.AnooFabricacion = produc.AÑO_FABRICACION;
-                producto.CasaFabricacion = produc.CASA_FABRICACION;
-                producto.EstadoProducto = produc.ESTADO_PRODUCTO;
-                producto.AreaTratamiento = produc.AREA_TRATAMIENTO;
+                produc.IdProducto = produc.ID_PRODUCTO;
+                produc.DescripcionProducto = produc.DESC_PRODUCTO;
+                produc.AnooFabricacion = produc.AÑO_FABRICACION;
+                produc.CasaFabricacion = produc.CASA_FABRICACION;
+                produc.EstadoProducto = produc.ESTADO_PRODUCTO;
+                produc.AreaTratamiento = produc.AREA_TRATAMIENTO;
             }
             return View(producto);
 
         }
-
 
         [HttpPost]
         public ActionResult ActualizarProducto(CActualizarProducto produc)
         {
             try
             {
-
-                if (!ModelState.IsValid)
+                if (!ModelSatate.IsValid)
                 {
                     return View(produc);
                 }
 
                 using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
                 {
+                    var producto = db.T_PRODUCTOS.
+                    produc.IdProducto = produc.ID_PRODUCTO;
+                    produc.DescripcionProducto = produc.DESC_PRODUCTO;
+                    produc.AnooFabricacion = produc.AÑO_FABRICACION;
+                    produc.CasaFabricacion = produc.CASA_FABRICACION;
+                    produc.EstadoProducto = produc.ESTADO_PRODUCTO;
+                    produc.AreaTratamiento = produc.AREA_TRATAMIENTO;
 
-                    var producto = db.T_PRODUCTOS.Find(produc.IdProducto);  
-
-                    producto.DESC_PRODUCTO = produc.DescripcionProducto;
-                    producto.AÑO_FABRICACION = produc.AnooFabricacion;
-                    producto.CASA_FABRICACION = produc.CasaFabricacion;
-                    producto.ESTADO_PRODUCTO = produc.EstadoProducto;
-                    producto.AREA_TRATAMIENTO = produc.AreaTratamiento;
-
-                    db.Entry(producto).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
+                    db.Entry(producto).State = System.Data.EntityState.Modified;
+                    db.SaveChanges;
 
                     ViewBag.ValorMensaje = 1;
-                    ViewBag.MensajeProducto = "Producto exitosamente actualizado";
+                    ViewBag.MensajeProducto = "Producto exitosamente actuañlizado";
 
                 }
-                return View(produc);
             }
-            catch (Exception e)
+            catch
             {
-                ViewBag.ValorMensaje = 0;
-                ViewBag.MensajeProducto = "Fallo la actualizacion" + e ;
-                return View(produc);
+
+
             }
 
         }
-
 
         [HttpGet]
         public ActionResult ConsultarProducto(int id)
@@ -131,6 +124,8 @@ namespace Examen.Controllers
                 per.IdProducto = pers.ID_PRODUCTO;
                 per.DescripcionProducto = pers.DESC_PRODUCTO;
 
+                (BotonActualizar = "Actualizar",
+                 BotonBorrar = "Borrar").ToList();
             }
        
 
