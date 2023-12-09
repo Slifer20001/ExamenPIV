@@ -71,7 +71,8 @@ namespace Examen.Controllers
 
                 using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
                 {
-                    var producto = db.T_PRODUCTOS;  
+
+                    var producto = db.T_PRODUCTOS.Find(produc.IdProducto);  
 
                     producto.DESC_PRODUCTO = produc.DescripcionProducto;
                     producto.AÑO_FABRICACION = produc.AnooFabricacion;
