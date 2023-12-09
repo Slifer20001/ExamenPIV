@@ -68,19 +68,19 @@ namespace Examen.Controllers
         
 
         [HttpGet]
-        public ActionResult ActualizarProducto(int id )
+        public ActionResult ActualizarProducto(int id)
         {
             CActualizarProducto producto = new CActualizarProducto();
             using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
             {
-                var produc = db.T_PRODUCTOS.Find(id);
+                var pro = db.T_PRODUCTOS.Find(id);
 
-                producto.IdProducto = produc.ID_PRODUCTO;
-                producto.DescripcionProducto = produc.DESC_PRODUCTO;
-                producto.AnooFabricacion = produc.AÑO_FABRICACION;
-                producto.CasaFabricacion = produc.CASA_FABRICACION;
-                producto.EstadoProducto = produc.ESTADO_PRODUCTO;
-                producto.AreaTratamiento = produc.AREA_TRATAMIENTO;
+                producto.IdProducto = pro.ID_PRODUCTO;
+                producto.DescripcionProducto = pro.DESC_PRODUCTO;
+                producto.AnooFabricacion = pro.AÑO_FABRICACION;
+                producto.CasaFabricacion = pro.CASA_FABRICACION;
+                producto.EstadoProducto = pro.ESTADO_PRODUCTO;
+                producto.AreaTratamiento = pro.AREA_TRATAMIENTO;
             }
             return View(producto);
 
