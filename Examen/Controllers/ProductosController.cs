@@ -57,6 +57,7 @@ namespace Examen.Controllers
 
         }
 
+
         [HttpPost]
         public ActionResult ActualizarProducto(CActualizarProducto produc)
         {
@@ -70,16 +71,16 @@ namespace Examen.Controllers
 
                 using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
                 {
-                    var producto = db.T_PRODUCTOS.Find(produc.IdProducto);
-                    
-                    producto.DescripcionProducto = produc.DESC_PRODUCTO;
-                    producto.AnooFabricacion = produc.AÑO_FABRICACION;
-                    producto.CasaFabricacion = produc.CASA_FABRICACION;
-                    producto.EstadoProducto = produc.ESTADO_PRODUCTO;
-                    producto.AreaTratamiento = produc.AREA_TRATAMIENTO;
+                    var producto = db.T_PRODUCTOS;  
 
-                    db.Entry(producto).State = System.Data.EntityState.Modified;
-                    db.SaveChanges;
+                    producto.DESC_PRODUCTO = produc.DescripcionProducto;
+                    producto.AÑO_FABRICACION = produc.AnooFabricacion;
+                    producto.CASA_FABRICACION = produc.CasaFabricacion;
+                    producto.ESTADO_PRODUCTO = produc.EstadoProducto;
+                    producto.AREA_TRATAMIENTO = produc.AreaTratamiento;
+
+                    db.Entry(producto).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
 
                     ViewBag.ValorMensaje = 1;
                     ViewBag.MensajeProducto = "Producto exitosamente actualizado";
@@ -95,6 +96,7 @@ namespace Examen.Controllers
             }
 
         }
+
 
         [HttpGet]
         public ActionResult ConsultarProducto(int id)
