@@ -24,9 +24,36 @@ namespace Examen.Controllers
         }
 
         [HttpPost]
-        public ActionResult NuevoProducto(CProducto cProducto)
+        public ActionResult NuevoProducto(T_PRODUCTOS producto)
         {
-            return View();
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return AgregarProducto();
+                }
+
+                using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
+                {
+
+                    db.T_PRODUCTOS.Add(producto);
+
+                    db.SaveChanges();
+
+                    ViewBag.ValorMensaje = 1;
+                    ViewBag.MensajeProceso = "Producto agregado correctamente";
+
+                }
+
+
+                return AgregarProducto();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ValorMensaje = 0;
+                ViewBag.MensajeProceso = "Fallo al agregar la producto" + ex;
+                return AgregarProducto();
+            }
         }
 
 
