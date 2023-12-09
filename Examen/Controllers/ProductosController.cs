@@ -20,40 +20,39 @@ namespace Examen.Controllers
         [HttpGet]
         public ActionResult AgregarProducto()
         {
+            ViewBag.listaCasaFabricacion = ListaCasaFabricacion();
+            ViewBag.listaEstadoProducto = ListaEstadoProducto();
+            ViewBag.listaAreaTratamiento = ListaAreaTratamiento();
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult NuevoProducto(T_PRODUCTOS producto)
+        public ActionResult AgregarProducto([Bind(Include = "ID_PRODUCTO,DESC_PRODUCTO,ANIO_FABRICACION,CASA_FABRICACION,ESTADO_PRODUCTO,AREA_TRATAMIENTO")] CAgregarProducto t_PRODUCTOS)
         {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return AgregarProducto();
-                }
+            ViewBag.listaCasaFabricacion = ListaCasaFabricacion();
+            ViewBag.listaEstadoProducto = ListaEstadoProducto();
+            ViewBag.listaAreaTratamiento = ListaAreaTratamiento();
 
+            if (ModelState.IsValid)
+            {
                 using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
                 {
+                    T_PRODUCTOS producto = new T_PRODUCTOS();
+
+                    producto.DESC_PRODUCTO = t_PRODUCTOS .DESC_PRODUCTO;
+                    producto.AÑO_FABRICACION = t_PRODUCTOS.ANIO_FABRICACION.Year;
+                    producto.ESTADO_PRODUCTO = t_PRODUCTOS.ESTADO_PRODUCTO; 
+                    producto.CASA_FABRICACION = t_PRODUCTOS.CASA_FABRICACION;
+                    producto.AREA_TRATAMIENTO = t_PRODUCTOS.AREA_TRATAMIENTO;
 
                     db.T_PRODUCTOS.Add(producto);
-
                     db.SaveChanges();
-
-                    ViewBag.ValorMensaje = 1;
-                    ViewBag.MensajeProceso = "Producto agregado correctamente";
-
+                    return RedirectToAction("ConsultaProducto");
                 }
-
-
-                return AgregarProducto();
             }
-            catch (Exception ex)
-            {
-                ViewBag.ValorMensaje = 0;
-                ViewBag.MensajeProceso = "Fallo al agregar la producto" + ex;
-                return AgregarProducto();
-            }
+
+            return View(t_PRODUCTOS);
         }
 
 
@@ -179,6 +178,39 @@ namespace Examen.Controllers
             }
 
             return RedirectToAction("ConsultaProducto", "Productos");
+
+        }
+
+        private List<SelectListItem> ListaCasaFabricacion()
+        {
+            return new List<SelectListItem>()
+            {
+                new SelectListItem{ Text="Médicos en Casa", Value="Médicos en Casa" },
+                new SelectListItem{ Text="Medicina a su Alcance", Value="Medicina a su Alcance" },
+                new SelectListItem{ Text="Médico Feliz", Value="Médico Feliz" }
+            };
+
+        }
+
+        private List<SelectListItem> ListaEstadoProducto()
+        {
+            return new List<SelectListItem>()
+            {
+                new SelectListItem{ Text="Activo", Value="Activo" },
+                new SelectListItem{ Text="Inactivo", Value="Inactivo" },
+                new SelectListItem{ Text="Descontinuado", Value="Descontinuado" }
+            };
+
+        }
+
+        private List<SelectListItem> ListaAreaTratamiento()
+        {
+            return new List<SelectListItem>()
+            {
+                new SelectListItem{ Text="Salud General", Value="Salud General" },
+                new SelectListItem{ Text="Salud Mental", Value="Salud Mental" },
+                new SelectListItem{ Text="Estética", Value="Estética" }
+            };
 
         }
 
