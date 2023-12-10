@@ -64,20 +64,22 @@ namespace Examen.Controllers
         //{
         //}
 
+        
+
         [HttpGet]
         public ActionResult ActualizarProducto(int id)
         {
             CActualizarProducto producto = new CActualizarProducto();
             using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
             {
-                var produc = db.T_PRODUCTOS.Find(id);
+                var pro = db.T_PRODUCTOS.Find(id);
 
-                producto.IdProducto = produc.ID_PRODUCTO;
-                producto.DescripcionProducto = produc.DESC_PRODUCTO;
-                producto.AnooFabricacion = produc.AÑO_FABRICACION;
-                producto.CasaFabricacion = produc.CASA_FABRICACION;
-                producto.EstadoProducto = produc.ESTADO_PRODUCTO;
-                producto.AreaTratamiento = produc.AREA_TRATAMIENTO;
+                producto.IdProducto = pro.ID_PRODUCTO;
+                producto.DescripcionProducto = pro.DESC_PRODUCTO;
+                producto.AnooFabricacion = pro.AÑO_FABRICACION;
+                producto.CasaFabricacion = pro.CASA_FABRICACION;
+                producto.EstadoProducto = pro.ESTADO_PRODUCTO;
+                producto.AreaTratamiento = pro.AREA_TRATAMIENTO;
             }
             return View(producto);
 
@@ -98,8 +100,9 @@ namespace Examen.Controllers
                 using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
                 {
 
-                    var producto = db.T_PRODUCTOS.Find(produc.IdProducto);  
+                    var producto = db.T_PRODUCTOS.Find(produc.IdProducto);
 
+                    
                     producto.DESC_PRODUCTO = produc.DescripcionProducto;
                     producto.AÑO_FABRICACION = produc.AnooFabricacion;
                     producto.CASA_FABRICACION = produc.CasaFabricacion;
@@ -115,10 +118,10 @@ namespace Examen.Controllers
                 }
                 return View(produc);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 ViewBag.ValorMensaje = 0;
-                ViewBag.MensajeProducto = "Fallo la actualizacion" + e ;
+                ViewBag.MensajeProducto = "Fallo la actualizacion" + ex ;
                 return View(produc);
             }
 
@@ -126,7 +129,7 @@ namespace Examen.Controllers
 
 
         [HttpGet]
-        public ActionResult ConsultarProducto(int id)
+        public ActionResult ConsultarProducto(int id )
         {
 
             CProducto per = new CProducto();
@@ -148,19 +151,25 @@ namespace Examen.Controllers
         [HttpGet]
         public ActionResult ConsultaProducto()
         {
+            List<CListaProductos> listPro = null;
 
-            CProducto per = new CProducto();
-            using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
+            using (Models.INFO_PRODUCTOSEntities db = new Models.INFO_PRODUCTOSEntities())
             {
-                var pers = db.T_PRODUCTOS.Find();
-
-                per.IdProducto = pers.ID_PRODUCTO;
-                per.DescripcionProducto = pers.DESC_PRODUCTO;
-
+                listPro = (from pro in db.T_PRODUCTOS
+                           select new CListaProductos
+                           {
+                               IdProducto = pro.ID_PRODUCTO,
+                               DescripcionProducto = pro.DESC_PRODUCTO,
+                               AnooFabricacion = pro.AÑO_FABRICACION,
+                               CasaFabricacion = pro.CASA_FABRICACION,
+                               EstadoProducto = pro.ESTADO_PRODUCTO,
+                               AreaTratamiento = pro.AREA_TRATAMIENTO
+                           }).ToList();
             }
-       
 
-            return View(per);
+            return View(listPro);
+
+
 
         }
 

@@ -1,8 +1,43 @@
 ﻿
+@model List<Examen.Models.viewModels.CListaProductos>
 @{
     ViewBag.Title = "ConsultaProducto";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ConsultaProducto</h2>
+
+<h2>Mantenimiento de Personas</h2>
+<br />
+<br />
+
+
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id_Producto</th>
+                    <th>Desc_Producto</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var fila in Model)
+                {
+                    <tr>
+                        <td>@fila.IdProducto</td>
+                        <td>@fila.DescripcionProducto</td>
+                        <td><input type="button" value="Editar" class="btn btn-primary" onclick="document.location.href = '@Url.Content("~/Productos/ActualizarProducto/" + fila.IdProducto)'" /></td>
+                        <td><input type="button" value="Eliminar" class="btn btn-danger" onclick="document.location.href = '@Url.Content("~/Productos/eliminarProducto/" + fila.IdProducto)'" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
 

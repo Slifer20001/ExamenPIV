@@ -8,7 +8,7 @@ namespace Examen.Models.viewModels
 {
     public class CActualizarProducto
     {
-        public int IdProducto { get; set; }
+        public int IdProducto { get; set; }  
 
         [Required]
         [Display(Name = "DescripcionProducto")]
