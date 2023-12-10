@@ -3,6 +3,7 @@ using Examen.Models.viewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,6 +18,7 @@ namespace Examen.Controllers
 
         //}
 
+        
         [HttpGet]
         public ActionResult AgregarProducto()
         {
@@ -69,6 +71,9 @@ namespace Examen.Controllers
         [HttpGet]
         public ActionResult ActualizarProducto(int id)
         {
+            ViewBag.listaCasaFabricacion = ListaCasaFabricacion();
+            ViewBag.listaEstadoProducto = ListaEstadoProducto();
+            ViewBag.listaAreaTratamiento = ListaAreaTratamiento();
             CActualizarProducto producto = new CActualizarProducto();
             using (INFO_PRODUCTOSEntities db = new INFO_PRODUCTOSEntities())
             {
@@ -76,7 +81,7 @@ namespace Examen.Controllers
 
                 producto.IdProducto = pro.ID_PRODUCTO;
                 producto.DescripcionProducto = pro.DESC_PRODUCTO;
-                producto.AnooFabricacion = pro.AÑO_FABRICACION;
+                producto.AnooFabricacion.AddYears(pro.AÑO_FABRICACION);
                 producto.CasaFabricacion = pro.CASA_FABRICACION;
                 producto.EstadoProducto = pro.ESTADO_PRODUCTO;
                 producto.AreaTratamiento = pro.AREA_TRATAMIENTO;
@@ -89,6 +94,9 @@ namespace Examen.Controllers
         [HttpPost]
         public ActionResult ActualizarProducto(CActualizarProducto produc)
         {
+            ViewBag.listaCasaFabricacion = ListaCasaFabricacion();
+            ViewBag.listaEstadoProducto = ListaEstadoProducto();
+            ViewBag.listaAreaTratamiento = ListaAreaTratamiento();
             try
             {
 
@@ -104,7 +112,7 @@ namespace Examen.Controllers
 
                     
                     producto.DESC_PRODUCTO = produc.DescripcionProducto;
-                    producto.AÑO_FABRICACION = produc.AnooFabricacion;
+                    producto.AÑO_FABRICACION = produc.AnooFabricacion.Year;
                     producto.CASA_FABRICACION = produc.CasaFabricacion;
                     producto.ESTADO_PRODUCTO = produc.EstadoProducto;
                     producto.AREA_TRATAMIENTO = produc.AreaTratamiento;
@@ -116,7 +124,7 @@ namespace Examen.Controllers
                     ViewBag.MensajeProducto = "Producto exitosamente actualizado";
 
                 }
-                return View(produc);
+                return RedirectToAction("ConsultaProducto");
             }
             catch (Exception ex)
             {

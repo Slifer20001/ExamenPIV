@@ -16,7 +16,7 @@ namespace Examen.Models.viewModels
 
         [Required]
         [Display(Name = "AnnoFabricacion")]
-        public int AnooFabricacion { get; set; }
+        public DateTime AnooFabricacion { get; set; }
 
         [Required]
         [Display(Name = "CasaFabricacion")]
