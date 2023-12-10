@@ -1,97 +1,71 @@
 ﻿@model Examen.Models.viewModels.CActualizarProducto
+
+
 @{
-    ViewBag.Title = "ActualizarProducto";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Actualizar Producto";
 }
 
-
-<h1>Actualizar Producto</h1>
-<br />
-<br />
-@if (ViewBag.ValorMensaje == 1)
-{
-    <div class="modal fade" id="miModelo" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modelo">&times;</button>
-                    <h3 class="modal-title">Mensaje</h3>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-success">@ViewBag.MensajeProducto</div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default">Actualizar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-}
-@if (ViewBag.ValorMensaje == 0)
-{
-    <div class="modal fade" id="miModelo" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modelo">&times;</button>
-                    <h3 class="modal-title">Mensaje</h3>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-success">@ViewBag.MensajeProducto</div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default">Actualizar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-}
+<h2>Actualizar Producto</h2>
 
 
 @using (Html.BeginForm("ActualizarProducto", "Productos", FormMethod.Post))
 {
-    <div class="row">
-        <form action="ActualizarProducto" method="post">
-            <div class="form-group">
-                <label for="inputDescription" class="form-label">Descripcion</label>
-                <input type="text" class="form-control" id="inputDescription" name="DESC_PRODUCTO" required />
-            </div>
-            <div class="form-group">
-                <label form="inputProduction" class="form-label">Año fabricacion</label>
-                <input type="number" value="2023" class="form-control" id="inputProdution" name="AÑO_FABRICACION" required />
-            </div>
-            <div class="form-group">
-                <label for="inputHouse" class="form-label">Casa fabricante</label>
-                <select class="form-control" id="inputHouse" name="CASA_FABRICACION">
-                    <option value="Médicos en Casa">Médicos en casa</option>
-                    <option value="Medicina a tu Alcance">Medicina a tu alcance</option>
-                    <option value="Médico Feliz">Médico feliz</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="inputState" class="form-label">Estado producto</label>
-                <select class="form-control" id="inputState" name="ESTADO_PRODUCTO">
-                    <option value="Activo">Activo</option>
-                    <option value="Inactivo">Inactivo</option>
-                    <option value="Descontinuado">Descontinuado</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="inputTreatment" class="form-label">Área tratamiento</label>
-                <select class="form-control" id="inputTreatment" name="AREA_TRATAMIENTO">
-                    <option value="Salud General">Salud general</option>
-                    <option value="Salud Mental">Salud mental</option>
-                    <option value="Estética">Estética</option>
-                </select>
+    @Html.AntiForgeryToken()
 
-            </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
-        </form>
-   </div>
- }
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IdProducto)
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.DescripcionProducto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DescripcionProducto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DescripcionProducto, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-@section scripts {
-   <script type="text/javascript">
-      $('#miModelo').modal('show')
-   </script> 
-} 
+    <div class="form-group">
+        @Html.LabelFor(model => model.AnooFabricacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.AnooFabricacion, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.AnooFabricacion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CasaFabricacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.CasaFabricacion, (List<SelectListItem>)ViewBag.listaCasaFabricacion, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CasaFabricacion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EstadoProducto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.EstadoProducto, (List<SelectListItem>)ViewBag.listaEstadoProducto, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EstadoProducto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AreaTratamiento, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.AreaTratamiento, (List<SelectListItem>)ViewBag.listaAreaTratamiento, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AreaTratamiento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Actualizar" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "ConsultaProducto")
+</div>
+

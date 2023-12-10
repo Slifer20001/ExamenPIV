@@ -11,14 +11,27 @@ namespace Examen.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class T_PRODUCTOS
     {
+        [Required]
+        [Display(Name = "Id")]
         public int ID_PRODUCTO { get; set; }
+        [Required]
+        [Display(Name = "Descripcion")]
         public string DESC_PRODUCTO { get; set; }
+        [Required]
+        [Display(Name = "Fabricación")]
         public int AÑO_FABRICACION { get; set; }
+        [Required]
+        [Display(Name = "Casa")]
         public string CASA_FABRICACION { get; set; }
+        [Required]
+        [Display(Name = "Estado")]
         public string ESTADO_PRODUCTO { get; set; }
+        [Required]
+        [Display(Name = "Area")]
         public string AREA_TRATAMIENTO { get; set; }
     }
 }
