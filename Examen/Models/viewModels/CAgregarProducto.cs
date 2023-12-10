@@ -12,24 +12,30 @@ namespace Examen.Models.viewModels
 
 
         [Required]
-        [Display(Name = "DescripcionProducto")]
-        public string DescripcionProducto{ get; set; }
+        [Display(Name = "Id")]
+        public int ID_PRODUCTO { get; set; }
 
         [Required]
-        [Display(Name = "AnnoFabricacion")]
-        public int AnooFabricacion { get; set; }
+        [Display(Name = "Descripcion")]
+        public string DESC_PRODUCTO { get; set; }
 
         [Required]
-        [Display(Name = "CasaFabricacion")]
-        public string CasaFabricacion { get; set; }
+        [Display(Name = "Fabricado")]
+        [DataType(DataType.Date, ErrorMessage = "Date only")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public System.DateTime ANIO_FABRICACION { get; set; }
 
         [Required]
-        [Display(Name = "EstadoProducto")]
-        public string EstadoProducto { get; set; }
+        [Display(Name = "Casa")]
+        public string CASA_FABRICACION { get; set; }
 
         [Required]
-        [Display(Name = "AreaTratamiento")]
-        public string AreaTratamiento { get; set; }
+        [Display(Name = "Estado")]
+        public string ESTADO_PRODUCTO { get; set; }
+
+        [Required]
+        [Display(Name = "Area")]
+        public string AREA_TRATAMIENTO { get; set; }
 
     }
 }
